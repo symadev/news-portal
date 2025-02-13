@@ -6,7 +6,7 @@ const loadCategory = async() =>{
     const categoryBarContainer = document.getElementById("category-bar-container");
    data.data.news_category.forEach((item) => {
 const div = document.createElement("div");
-div.innerHTML=`<button class="btn btn-ghost">${item.category_name}</button> `;
+div.innerHTML=`<button onclick="loadNews('${item.category_id}')" class="btn btn-ghost">${item.category_name}</button> `;
     
     
 
@@ -17,12 +17,14 @@ categoryBarContainer.appendChild(div);
 
 
 
-const loadNews = async() =>{
+const loadNews = async(catId) =>{
 
 
-    const response =  await fetch("https://openapi.programming-hero.com/api/news/category/01");
+    const response =  await fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`);
     const data = await response.json();
     const newsContainer = document.getElementById("news-container");
+    newsContainer.innerHTML='';
+    
 data.data.forEach((item) => {
     const div = document.createElement("div");
     div.innerHTML=` <div class="hero-content flex-col lg:flex-row">
@@ -49,5 +51,5 @@ data.data.forEach((item) => {
 };
 
 
-loadNews();
+loadNews("01");//by-defult
 loadCategory();
