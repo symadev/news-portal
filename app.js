@@ -18,7 +18,7 @@ categoryBarContainer.appendChild(div);
 };
 
 
-//fetch the news deatils
+//fetch the news details
 const loadNews = async(catId) =>{
 
 
@@ -52,7 +52,7 @@ data.data.forEach((item) => {
 
 };
 
-// search box-implemenation
+// search box-Implementation
 const handleSearch =()=>{
   const value= document.getElementById("search-box").value;
   
@@ -72,5 +72,5 @@ const handleSearch =()=>{
 
 
 
-loadNews("01");//by-defult
+loadNews("01");//by-default
 loadCategory();
