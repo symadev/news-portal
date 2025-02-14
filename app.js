@@ -1,4 +1,6 @@
-const loadCategory = async() =>{
+ //fetch the category 
+  
+  const loadCategory = async() =>{
 
 
     const response =  await fetch("https://openapi.programming-hero.com/api/news/categories");
@@ -16,15 +18,15 @@ categoryBarContainer.appendChild(div);
 };
 
 
-
+//fetch the news deatils
 const loadNews = async(catId) =>{
 
 
-    const response =  await fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`);
+    const response =  await fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`);//catId--> for showing the specific category
     const data = await response.json();
     const newsContainer = document.getElementById("news-container");
-    newsContainer.innerHTML='';
-    
+    newsContainer.innerHTML='';//for showing the specific content
+
 data.data.forEach((item) => {
     const div = document.createElement("div");
     div.innerHTML=` <div class="hero-content flex-col lg:flex-row">
@@ -34,9 +36,9 @@ data.data.forEach((item) => {
               <div>
                 <h1 class="text-3xl font-bold">${item.title}</h1>
                 <p class="py-6">
-                  ${item.details.slice(0,250)}  
+                  ${item.details.slice(0,250)}
                 </p>
-                <button class="btn btn-primary">Show Details</button>
+                <button class="btn btn-primary bg-white text-black border-0 ">Show Details</button>
               </div>
             </div>
                 
@@ -49,6 +51,25 @@ data.data.forEach((item) => {
 
 
 };
+
+// search box-implemenation
+const handleSearch =()=>{
+  const value= document.getElementById("search-box").value;
+  
+  if(value){
+    loadNews(value);
+  }
+  else{
+    alert ("Please enter the valid catId");
+  }
+}
+
+
+
+
+
+
+
 
 
 loadNews("01");//by-defult
